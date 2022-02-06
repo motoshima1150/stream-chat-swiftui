@@ -17,6 +17,16 @@ public struct PhotoAttachmentPickerView: View {
     
     let columns = [GridItem(.adaptive(minimum: 120), spacing: 2)]
     
+    public init(
+        assets: PHFetchResultCollection,
+        onImageTap: @escaping (AddedAsset) -> Void,
+        imageSelected: @escaping (String) -> Bool
+    ) {
+        self.assets = assets
+        self.onImageTap = onImageTap
+        self.imageSelected = imageSelected
+    }
+    
     public var body: some View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 2) {
