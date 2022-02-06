@@ -17,6 +17,20 @@ class DemoAppFactory: ViewFactory {
     func makeChannelListHeaderViewModifier(title: String) -> some ChannelListHeaderViewModifier {
         CustomChannelModifier(title: title)
     }
+    
+    public func makePhotoAttachmentPickerView(
+        assets: PHFetchResultCollection,
+        onAssetTap: @escaping (AddedAsset) -> Void,
+        isAssetSelected: @escaping (String) -> Bool
+    ) -> some View {
+        AttachmentTypeContainer {
+            CustomPhotoAttachmentPickerView(
+                assets: assets,
+                onImageTap: onAssetTap,
+                imageSelected: isAssetSelected
+            )
+        }
+    }
 }
 
 struct CustomChannelDestination: View {
